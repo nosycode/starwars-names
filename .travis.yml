@@ -1,7 +1,6 @@
 language: node_js
 
-node_js:
-  - 10
+node_js: lts/*
 
 jobs:
   include:
@@ -11,4 +10,4 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          - npm run semantic-release
+          - npx semantic-release
