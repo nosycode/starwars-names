@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "mocha src/index.test.js",
+    "test": "nyc --exclude \"**/*.test.js\" --reporter lcov  --reporter text-summary mocha src/index.test.js",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -31,7 +31,8 @@
     "commitizen": "4.0.4",
     "cz-conventional-changelog": "3.1.0",
     "ghooks": "2.0.4",
-    "mocha": "7.1.1"
+    "mocha": "7.1.1",
+    "nyc": "15.0.1"
   },
   "config": {
     "ghooks": {
