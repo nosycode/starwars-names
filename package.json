@@ -2,11 +2,13 @@
   "name": "@nosycode/starwars-names",
   "version": "0.0.0-development",
   "description": "Get random Star Wars names",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-    "test": "nyc -x \"**/*.test.js\" --r lcov  --r text-summary mocha src/index.test.js && npm run check-coverage",
+    "prebuild": "rimraf dist",
+    "build": "babel src --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
+    "test": "nyc -x \"**/*.test.js\" --r lcov  --r text-summary mocha src/index.test.js && npm run check-coverage -- --branches 0",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -18,6 +20,10 @@
     "star",
     "wars"
   ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "author": "nosycode <nosycode@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -28,12 +34,18 @@
     "unique-random-array": "2.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.5",
     "chai": "4.2.0",
+    "codecov": "3.6.5",
     "commitizen": "4.0.4",
     "cz-conventional-changelog": "3.1.0",
     "ghooks": "2.0.4",
     "mocha": "7.1.1",
-    "nyc": "15.0.1"
+    "nyc": "15.0.1",
+    "rimraf": "3.0.2",
+    "semantic-release": "17.0.6"
   },
   "config": {
     "ghooks": {
@@ -42,5 +54,10 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
