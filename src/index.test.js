@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var starWars = require("../dist/index");
+var starWars = require("./index");
 
 describe('starwars-names', function() {
   describe('all', function() {

@@ -7,8 +7,9 @@ dist: xenial
 node_js: lts/*
 
 script:
+  - npm run coverage:test
+  - npm run coverage:check
   - npm run build
-  - npm test
 
 after_success:
   - npx codecov

@@ -5,10 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "coverage:test": "nyc --reporter lcov npm test",
+    "coverage:check": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
-    "test": "nyc -x \"**/*.test.js\" --r lcov  --r text-summary mocha src/index.test.js && npm run check-coverage -- --branches 0",
+    "test": "mocha src/index.test.js --require @babel/register",
+    "watch:test": "npm test -- -w",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -37,6 +39,7 @@
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.5",
+    "@babel/register": "7.9.0",
     "chai": "4.2.0",
     "codecov": "3.6.5",
     "commitizen": "4.0.4",
@@ -49,7 +52,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm test"
+      "pre-commit": "npm run coverage:test && npm run coverage:check"
     },
     "commitizen": {
       "path": "cz-conventional-changelog"
