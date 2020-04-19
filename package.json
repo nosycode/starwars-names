@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
-    "coverage:test": "nyc --reporter lcov npm test",
+    "coverage:test": "nyc --r text --r text-summary --r lcov npm test",
     "coverage:check": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
