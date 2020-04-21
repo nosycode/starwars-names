@@ -10,11 +10,6 @@ branches:
   only:
     - master
 
-script:
-  - npm run coverage:test
-  - npm run coverage:check
-  - npm run build
-
 after_success:
   - npx codecov
 
@@ -22,6 +17,10 @@ jobs:
   include:
     - stage: release
       node_js: lts/*
+      script:
+        - npm run coverage:test
+        - npm run coverage:check
+        - npm run build
       deploy:
         provider: script
         cleanup: false
