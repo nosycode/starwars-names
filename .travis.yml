@@ -10,9 +10,6 @@ branches:
   only:
     - master
 
-after_success:
-  - npx codecov
-
 jobs:
   include:
     - stage: release
@@ -25,3 +22,5 @@ jobs:
         provider: script
         cleanup: false
         script: npx semantic-release
+        after_success:
+          - npx codecov
