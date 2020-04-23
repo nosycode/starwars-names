@@ -12,6 +12,7 @@
     "build:main": "babel src --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js -p",
+    "validate": "npm run coverage:test && npm run coverage:check",
     "test": "mocha src/index.test.js --require @babel/register",
     "watch:test": "npm test -- -w",
     "semantic-release": "semantic-release"
@@ -59,7 +60,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run coverage:test && npm run coverage:check"
+      "pre-commit": "npm run validate"
     },
     "commitizen": {
       "path": "cz-conventional-changelog"

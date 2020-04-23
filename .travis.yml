@@ -15,8 +15,7 @@ jobs:
     - stage: release
       node_js: lts/*
       script:
-        - npm run coverage:test
-        - npm run coverage:check
+        - npm run validate
         - npm run build
       after_success:
         - npx codecov
