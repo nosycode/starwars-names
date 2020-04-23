@@ -36,6 +36,10 @@
     "url": "https://github.com/nosycode/starwars-names/issues"
   },
   "homepage": "https://github.com/nosycode/starwars-names#readme",
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
   "dependencies": {
     "unique-random-array": "2.0.0"
   },
